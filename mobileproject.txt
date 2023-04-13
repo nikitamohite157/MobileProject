@@ -1,0 +1,204 @@
+package seleniumpoject1;
+import java.awt.AWTException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Test {
+	
+	private static CharSequence mwh;
+	WebDriver driver;
+	//@SuppressWarnings("null")
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) throws InterruptedException, AWTException {
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		ChromeDriver driver = new ChromeDriver(options);
+		driver.get("http://live.techpanda.org/");
+	
+		//Verify Title of the page
+      String title=driver.getTitle();
+     System.out.println("Title:"+title);
+     //Click on Mobilemenu
+     
+     
+     String url=driver.getCurrentUrl();
+     System.out.println(url);
+
+     
+     System.out.println(driver.getWindowHandle());
+     System.out.println(driver.getWindowHandles());
+     driver.findElement(By.xpath("//a[normalize-space()='Mobile']")).click();
+     
+
+     //Verify the Title of the page
+     String title1=driver.getTitle();
+    System.out.println("Title:"+title1);
+    
+    String url1=driver.getCurrentUrl();
+    System.out.println(url1);
+
+    System.out.println(driver.getWindowHandle());
+    System.out.println(driver.getWindowHandles());
+    
+    //Verify all the Products are sorted by  name
+    
+    driver.findElement(By.xpath("//*[@id=\"top\"]/body/div/div/div[2]/div/div[2]/div[1]/div[3]/div[1]/div[1]/div/select"));
+    Thread.sleep(1000);
+    if(driver.getTitle().equals("Mobile")){
+	System.out.println("Name");
+    }
+    else
+	{
+		System.out.println(driver.getTitle());
+		driver.getTitle();
+	}
+	Select s1=new Select(driver.findElement(By.xpath("//body/div[@class='wrapper']/div[@class='page']/div[@class='main-container col3-layout']/div[@class='main']/div[@class='col-wrapper']/div[@class='col-main']/div[@class='category-products']/div[@class='toolbar']/div[@class='sorter']/div[@class='sort-by']/select[1]")));
+	s1.selectByVisibleText("Name");
+	
+	
+	
+	
+	//mobile name and  price print
+	driver.findElement(By.xpath("//img[@id='product-collection-image-1']"));
+	Thread.sleep(1000);
+	if(driver.getTitle().equals("Mobile"))
+	System.out.println("Sony Xperia");
+	
+	
+	driver.get("http://live.techpanda.org/index.php/mobile.html");
+	
+	String SonyXperia="//a[normalize-space()='Sony Xperia']";
+	String value="//*[@id=\"top\"]/body/div/div/div[2]/div/div[2]/div[1]/div[3]/ul/li[2]/div/div[1]";
+	String text=driver.findElement(By.xpath(SonyXperia)).getDomAttribute(title);
+	System.out.println(text);
+	
+	String price=driver.findElement(By.xpath(value)).getText();
+	System.out.println(price);
+	
+	List<WebElement>lists=driver.findElements(By.xpath("//a[normalize-space()='Sony Xperia']"));
+	List<WebElement>list=driver.findElements(By.xpath("//*[@id=\"top\"]/body/div/div/div[2]/div/div[2]/div[1]/div[3]/ul/li[2]/div/div[1]"));
+	for(int i=0;i<lists.size();i++);
+	int i = 0;
+	System.out.println(lists.get(i).getAttribute("title"));
+	
+	for(int j=0;j<list.size();j++);
+	int j = 0;
+	System.out.println(list.get(j).getText());
+	
+	
+	
+    //Click on Sony Xperia Mobile
+    String url11=driver.getCurrentUrl();
+    System.out.println(url11);
+
+    
+    System.out.println(driver.getWindowHandle());
+    System.out.println(driver.getWindowHandles());
+    driver.findElement(By.xpath("//img[@id='product-collection-image-2']")).click();
+    
+    //Sony Xperia Mobile from Detail page
+    
+    driver.findElement(By.xpath("//div[@class='ratings']"));
+    String details =driver.getTitle();
+    System.out.println("details:"+details);
+    
+    String url2=driver.getCurrentUrl();
+    System.out.println(url2);
+
+    System.out.println(driver.getWindowHandle());
+    System.out.println(driver.getWindowHandles());
+    
+    //In the list of all Mobile, click on ""ADD TO CART ""for Sony Xperia mobile
+    
+     WebElement addToCart=driver.findElement(By.xpath("//span[contains(text(),'Add to Cart')]"));
+     addToCart.click();
+     
+     //Change ""QTY"" value 
+     
+     driver.findElement(By.xpath("//input[@title='Qty']")).sendKeys("1000");
+     WebElement UPDATE=driver.findElement(By.xpath("//button[@title='Update']//span//span[contains(text(),'Update')]"));
+     UPDATE.click();
+     
+    
+     
+     //Then Click on ""EMPTY CART"" link in the footer of list of all mobiles
+   WebElement  EmptyCart = driver.findElement(By.xpath("//span[contains(text(),'Empty Cart')]"));
+   EmptyCart.click();
+     
+     //Verify Cart is empty.
+   System.out.println("shopping cart is empty");
+   
+   
+   
+   WebElement click=driver.findElement(By.xpath("(//a[normalize-space()='here'])[1]"));
+   click.click();
+   
+   //Click on Mobile Menu 
+   
+   
+   String url111=driver.getCurrentUrl();
+   System.out.println(url111);
+
+   
+   System.out.println(driver.getWindowHandle());
+   System.out.println(driver.getWindowHandles());
+   driver.findElement(By.xpath("//a[normalize-space()='Mobile']")).click();
+   
+   //In Mobile Product List, Click on ""Add to Compare"" for 2 Mobiles
+   
+   driver.findElement(By.xpath("//li[1]//div[1]//div[3]//ul[1]//li[2]//a[1]")).click();
+   driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[3]/ul[1]/li[3]/div[1]/div[3]/ul[1]/li[2]/a[1]")).click();
+   WebElement compare=driver.findElement(By.xpath("//button[@title='Compare']//span//span[contains(text(),'Compare')]"));
+   compare.click();
+   
+   
+   //Verify the pop up window and check that the products are reflected in it.
+ 
+   driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+   driver.findElement(By.id("compare-items")).click();	
+   Set<String> wnd = driver.getWindowHandles();
+   Iterator<String> i1 = wnd.iterator();
+   String prntw = i1.next();
+   String popwnd = i1.next();
+   driver.switchTo().window(popwnd);
+   System.out.println("Page title of popup: "+ driver.getTitle());
+   driver.close();
+   driver.switchTo().window(prntw);
+   System.out.println("Page title of parent window: "+ driver.getTitle());
+   driver.quit();
+  }
+		
+   
+	}
+
+
+
+	
+	
+	
+    
+    	
+   
+
+	
+	
+	
+	
+
+    
+    
+    
+
+  
+	
+	
+	
